@@ -12,6 +12,10 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class EnderecoDomain implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -25,11 +29,14 @@ public class EnderecoDomain implements Serializable {
 	private String bairro;
 	private String cep;
 	
-	
+	//bloqueia a serialização (não mostra a lista)
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private ClienteDomain cliente; 
 
+	//libera a serialização (mostra a lista)
+	//@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
 	private CidadeDomain cidade;
@@ -100,6 +107,7 @@ public class EnderecoDomain implements Serializable {
 		this.cep = cep;
 	}
 
+	//@JsonIgnore
 	public ClienteDomain getCliente() {
 		return cliente;
 	}
@@ -108,6 +116,7 @@ public class EnderecoDomain implements Serializable {
 		this.cliente = cliente;
 	}
 
+	
 	public CidadeDomain getCidade() {
 		return cidade;
 	}

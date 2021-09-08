@@ -15,7 +15,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
+
 
 @Entity
 public class ClienteDomain implements Serializable{
@@ -27,14 +30,17 @@ public class ClienteDomain implements Serializable{
 	private String nome;
 	private String email;
 	private String cpfouCnpj;
-	
 	// tipo enum - enumerado , "classe" de constantes pré-definidas. 
 	private Integer tipoCliente;
 	
+
+
+	//libera a serialização (mostra a lista)
+	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List <EnderecoDomain> enderecos = new ArrayList<>();
 	
-	//gera uma coleção que não permite repetiçõe de elementos 
+	//gera uma coleção que não permite repetiçõe de elementos
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
@@ -44,6 +50,9 @@ public class ClienteDomain implements Serializable{
 		return "ClienteDomain []";
 	}
 
+	public ClienteDomain() {
+		
+	}
 	public ClienteDomain(Integer id, String nome, String email, String cpfouCnpj, TipoCliente tipoCliente) {
 		super();
 		this.id = id;
@@ -92,11 +101,13 @@ public class ClienteDomain implements Serializable{
 	public void setTipoCliente(TipoCliente tipoCliente) {
 		this.tipoCliente = tipoCliente.getCod();
 	}
-
+	
+	@JsonIgnore
 	public List<EnderecoDomain> getEnderecos() {
 		return enderecos;
 	}
 
+	//@JsonIgnore
 	public void setEnderecos(List<EnderecoDomain> enderecos) {
 		this.enderecos = enderecos;
 	}

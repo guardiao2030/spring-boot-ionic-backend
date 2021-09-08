@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.nelioalves.cursomc.domain.CategoriaDomain;
-import com.nelioalves.cursomc.services.CategoriaService;
+import com.nelioalves.cursomc.domain.ClienteDomain;
+import com.nelioalves.cursomc.services.ClienteService;
 
 @RestController
-@RequestMapping(value ="/categorias")
-public class CategoriaResource {
+@RequestMapping(value ="/clientes")
+public class ClienteResource {
 
-
+	
 	@Autowired
-	private CategoriaService service; 
+	private ClienteService service; 
 	
 	@RequestMapping(value ="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id){	
 		
-		CategoriaDomain obj = service.buscar(id);
+		ClienteDomain obj = service.buscar(id);
 		return ResponseEntity.ok().body(obj);
 		
 	}
