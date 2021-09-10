@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -16,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 
 
@@ -36,7 +36,7 @@ public class ClienteDomain implements Serializable{
 
 
 	//libera a serialização (mostra a lista)
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List <EnderecoDomain> enderecos = new ArrayList<>();
 	
@@ -45,11 +45,13 @@ public class ClienteDomain implements Serializable{
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 
-	@Override
-	public String toString() {
-		return "ClienteDomain []";
-	}
-
+	//libera a serialização (mostra a lista)
+	//@JsonManagedReference
+	@OneToMany(mappedBy = "cliente")
+	private List<PedidoDomain> pedidos = new ArrayList<>();
+	
+	
+	
 	public ClienteDomain() {
 		
 	}
@@ -120,6 +122,13 @@ public class ClienteDomain implements Serializable{
 		this.telefones = telefones;
 	}
 
+	public List<PedidoDomain> getPedidos() {
+		return pedidos;
+	}
+	public void setPedidos(List<PedidoDomain> pedidos) {
+		this.pedidos = pedidos;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -136,7 +145,11 @@ public class ClienteDomain implements Serializable{
 		ClienteDomain other = (ClienteDomain) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+	/*
+	@Override
+	public String toString() {
+		return "ClienteDomain []";
+	}
+	*/
 	
 }
