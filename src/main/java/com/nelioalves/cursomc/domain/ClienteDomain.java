@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 
 
@@ -122,6 +123,7 @@ public class ClienteDomain implements Serializable{
 		this.telefones = telefones;
 	}
 
+	//@JsonIgnore
 	public List<PedidoDomain> getPedidos() {
 		return pedidos;
 	}

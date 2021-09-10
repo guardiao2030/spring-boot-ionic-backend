@@ -2,7 +2,9 @@ package com.nelioalves.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -38,6 +40,9 @@ public class PedidoDomain implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="endereca_de_entrega_id")
 	private EnderecoDomain enderecoDeEntrega;
+	
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ItemPedidoDomain> itens = new HashSet<>();
 	
 	public PedidoDomain() {
 	
@@ -86,7 +91,7 @@ public class PedidoDomain implements Serializable{
 		this.pagamento = pagamento;
 	}
 
-	//@JsonIgnore
+	@JsonIgnore
 	public ClienteDomain getCliente() {
 		return cliente;
 	}
@@ -104,6 +109,14 @@ public class PedidoDomain implements Serializable{
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
+	public Set<ItemPedidoDomain> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedidoDomain> itens) {
+		this.itens = itens;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -120,6 +133,8 @@ public class PedidoDomain implements Serializable{
 		PedidoDomain other = (PedidoDomain) obj;
 		return Objects.equals(id, other.id);
 	}
+
+
 	
 	
 }

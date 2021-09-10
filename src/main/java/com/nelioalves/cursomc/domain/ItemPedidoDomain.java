@@ -1,10 +1,13 @@
 package com.nelioalves.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class ItemPedidoDomain implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -13,15 +16,28 @@ public class ItemPedidoDomain implements Serializable{
 	private Integer quantidade;
 	private Double preco;
 	
+	@EmbeddedId
+	private ItemPedidoPk id =new ItemPedidoPk();
+	
 	public ItemPedidoDomain(){
 		
 	}
 
-	public ItemPedidoDomain(Double desconto, Integer quantidade, Double preco) {
+	public ItemPedidoDomain(PedidoDomain pedido, ProdutosDomain produto, Double desconto, Integer quantidade, Double preco) {
 		super();
 		this.desconto = desconto;
 		this.quantidade = quantidade;
 		this.preco = preco;
+		this.id.setPedido(pedido);
+		this.id.setProduto(produto);
+	}
+
+	public ItemPedidoPk getId() {
+		return id;
+	}
+
+	public void setId(ItemPedidoPk id) {
+		this.id = id;
 	}
 
 	public Double getDesconto() {
@@ -48,7 +64,28 @@ public class ItemPedidoDomain implements Serializable{
 		this.preco = preco;
 	}
 	
+	public PedidoDomain getPedido() {
+		return this.id.getPedido();
+	}
+	public ProdutosDomain getProduto() {
+		return this.id.getProduto();
+	}
 	
-	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemPedidoDomain other = (ItemPedidoDomain) obj;
+		return Objects.equals(id, other.id);
+	}
 	
 }
