@@ -16,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
@@ -30,6 +32,7 @@ public class ClienteDomain implements Serializable{
 	private Integer id;
 	private String nome;
 	private String email;
+	@JsonFormat(pattern = "\\d{3}")
 	private String cpfouCnpj;
 	// tipo enum - enumerado , "classe" de constantes pré-definidas. 
 	private Integer tipoCliente;
@@ -48,6 +51,7 @@ public class ClienteDomain implements Serializable{
 
 	//libera a serialização (mostra a lista)
 	//@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "cliente")
 	private List<PedidoDomain> pedidos = new ArrayList<>();
 	
@@ -105,7 +109,7 @@ public class ClienteDomain implements Serializable{
 		this.tipoCliente = tipoCliente.getCod();
 	}
 	
-	@JsonIgnore
+	//@JsonIgnore
 	public List<EnderecoDomain> getEnderecos() {
 		return enderecos;
 	}

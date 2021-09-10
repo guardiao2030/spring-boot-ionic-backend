@@ -16,7 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class PedidoDomain implements Serializable{
@@ -25,14 +27,18 @@ public class PedidoDomain implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instante;
 	
 	/// mapeamento um para um aula numero 26 da seção 1
 	// mapeia mesmo ida do pedico com o mesmo id do pagamento "pedido" é o mesmo nome da variavel
 	// na classe pagamento
+	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL , mappedBy = "pedido")
 	private PagamentoDomain pagamento;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private ClienteDomain cliente;

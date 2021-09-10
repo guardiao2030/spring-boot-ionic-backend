@@ -38,7 +38,7 @@ public class ProdutosDomain  implements Serializable {
 			  )
 	private List<CategoriaDomain> categorias = new ArrayList<>(); 
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedidoDomain> itens = new HashSet<>();
 	
@@ -53,6 +53,7 @@ public class ProdutosDomain  implements Serializable {
 
 	
 	// monta uma lista de produtos  (pedidos )
+	@JsonIgnore
 	public List<PedidoDomain> getPedidos(){
 		List<PedidoDomain> lista = new ArrayList<>();
 		for (ItemPedidoDomain x : itens) {
