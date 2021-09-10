@@ -34,11 +34,11 @@ public class PedidoDomain implements Serializable{
 	/// mapeamento um para um aula numero 26 da seção 1
 	// mapeia mesmo ida do pedico com o mesmo id do pagamento "pedido" é o mesmo nome da variavel
 	// na classe pagamento
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL , mappedBy = "pedido")
 	private PagamentoDomain pagamento;
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private ClienteDomain cliente;

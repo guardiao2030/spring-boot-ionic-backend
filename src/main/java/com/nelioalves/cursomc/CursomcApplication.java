@@ -24,6 +24,12 @@ import com.nelioalves.cursomc.domain.enums.EstadoPagamentoEnum;
 import com.nelioalves.cursomc.domain.enums.TipoCliente;
 import com.nelioalves.cursomc.repositories.*;
 
+
+//localhost:8081/categorias/2
+//localhost:8081/clientes/1
+//localhost:8081/pedidos/3
+
+
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
 

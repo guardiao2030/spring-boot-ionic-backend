@@ -23,7 +23,7 @@ public class CategoriaDomain implements Serializable {
 	private Integer id;
 	private String nome;
 
-	@JsonManagedReference
+	//@JsonManagedReference
 	@ManyToMany (mappedBy = "categorias")
 	private List<ProdutosDomain> produtos = new ArrayList<>();
 	

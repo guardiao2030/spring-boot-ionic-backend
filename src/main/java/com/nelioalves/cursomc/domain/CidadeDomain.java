@@ -23,7 +23,7 @@ public class CidadeDomain implements Serializable {
 	private String nome;
 	
 	
-	@JsonManagedReference
+	//@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="estado_id")
 	private EstadoDomain estado;

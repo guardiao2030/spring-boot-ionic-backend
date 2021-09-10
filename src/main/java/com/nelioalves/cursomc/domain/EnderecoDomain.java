@@ -30,7 +30,8 @@ public class EnderecoDomain implements Serializable {
 	private String cep;
 	
 	//bloqueia a serialização (não mostra a lista)
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private ClienteDomain cliente; 

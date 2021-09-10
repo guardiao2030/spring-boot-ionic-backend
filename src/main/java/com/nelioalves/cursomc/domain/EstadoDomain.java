@@ -26,7 +26,8 @@ public class EstadoDomain implements Serializable {
 	private Integer id;
 	private String nome;
 	
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany (mappedBy = "estado")
 	private List<CidadeDomain> cidades = new ArrayList<>();
 	

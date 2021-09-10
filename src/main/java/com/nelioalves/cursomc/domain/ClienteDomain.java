@@ -32,7 +32,7 @@ public class ClienteDomain implements Serializable{
 	private Integer id;
 	private String nome;
 	private String email;
-	@JsonFormat(pattern = "\\d{3}")
+	//@JsonFormat(pattern = "\\d{3}")
 	private String cpfouCnpj;
 	// tipo enum - enumerado , "classe" de constantes pré-definidas. 
 	private Integer tipoCliente;
@@ -51,7 +51,8 @@ public class ClienteDomain implements Serializable{
 
 	//libera a serialização (mostra a lista)
 	//@JsonManagedReference
-	@JsonBackReference
+	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<PedidoDomain> pedidos = new ArrayList<>();
 	

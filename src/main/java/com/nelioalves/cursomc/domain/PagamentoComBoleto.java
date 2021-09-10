@@ -11,9 +11,9 @@ import com.nelioalves.cursomc.domain.enums.EstadoPagamentoEnum;
 public class PagamentoComBoleto extends PagamentoDomain {
 	private static final long serialVersionUID = 1L;
 
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataVendimento;
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataPagamento;
 	
 	public PagamentoComBoleto () {
