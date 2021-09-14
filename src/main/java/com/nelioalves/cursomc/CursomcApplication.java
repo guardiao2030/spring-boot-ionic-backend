@@ -62,6 +62,12 @@ public class CursomcApplication implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		CategoriaDomain cat1 = new CategoriaDomain(null,"informática");
 		CategoriaDomain cat2 = new CategoriaDomain(null,"escritório");
+		CategoriaDomain cat3 = new CategoriaDomain(null,"cama mesa e banho");
+		CategoriaDomain cat4 = new CategoriaDomain(null,"eletronicos");
+		CategoriaDomain cat5 = new CategoriaDomain(null,"jardinagem");
+		CategoriaDomain cat6 = new CategoriaDomain(null,"decoração");
+		CategoriaDomain cat7 = new CategoriaDomain(null,"perfumaria");
+		CategoriaDomain cat8 = new CategoriaDomain(null,"farmacia");
 		
 		ProdutosDomain p1 = new ProdutosDomain(null, "Computador", 2000.00);
 		ProdutosDomain p2 = new ProdutosDomain(null, "Impressora", 800.00);
@@ -74,7 +80,7 @@ public class CursomcApplication implements CommandLineRunner {
 		p2.getCategoria().addAll(Arrays.asList(cat1,cat2));
 		p3.getCategoria().addAll(Arrays.asList(cat1));
 				
-		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7,cat8));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
 		EstadoDomain est1 = new EstadoDomain(null,"Minas Gerais");
