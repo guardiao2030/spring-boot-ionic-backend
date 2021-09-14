@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.nelioalves.cursomc.domain.CategoriaDomain;
+import com.nelioalves.cursomc.dto.CategoriaDTO;
 import com.nelioalves.cursomc.repositories.CategoriaRepository;
 import com.nelioalves.cursomc.services.exceptions.*;
 
@@ -57,6 +58,10 @@ public class CategoriaService {
 	public Page<CategoriaDomain> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
 		return repo.findAll(pageRequest);	
+	}
+	
+	public CategoriaDomain fromDTO (CategoriaDTO objDto) {
+		return new CategoriaDomain(objDto.getId(),objDto.getNome());
 	}
 	
 }
