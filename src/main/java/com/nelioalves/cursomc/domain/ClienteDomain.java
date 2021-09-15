@@ -67,7 +67,7 @@ public class ClienteDomain implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.cpfouCnpj = cpfouCnpj;
-		this.tipoCliente = tipoCliente.getCod();
+		this.tipoCliente = tipoCliente==null? null : tipoCliente.getCod();
 	}
 
 	public Integer getId() {
