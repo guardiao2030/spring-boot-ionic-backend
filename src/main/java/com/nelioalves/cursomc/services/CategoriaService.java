@@ -35,8 +35,15 @@ public class CategoriaService {
 
 	public CategoriaDomain update(CategoriaDomain obj) {
 		// TODO Auto-generated method stub
-		find(obj.getId());
-		return repo.save(obj);
+		CategoriaDomain newObj = find(obj.getId());
+		updateData(newObj,obj );
+		return repo.save(newObj);
+	}
+
+	private void updateData(CategoriaDomain newObj, CategoriaDomain obj) {
+		// TODO Auto-generated method stub //newObj.setProdutos(obj.getProdutos());
+		newObj.setNome(obj.getNome());
+		
 	}
 
 	public void delete(Integer id) {
