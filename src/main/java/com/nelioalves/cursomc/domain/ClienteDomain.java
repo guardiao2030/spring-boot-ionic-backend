@@ -40,7 +40,7 @@ public class ClienteDomain implements Serializable{
 
 	//libera a serialização (mostra a lista)
 	//@JsonManagedReference
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List <EnderecoDomain> enderecos = new ArrayList<>();
 	
 	//gera uma coleção que não permite repetiçõe de elementos
